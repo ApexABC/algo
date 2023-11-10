@@ -2,7 +2,7 @@ interface IHash {
   [index: string]: string[];
 }
 function letterCombinations(digits: string): string[] {
-  if (digits.length === 0) return [""];
+  if (digits.length === 0) return [];
   const hash: IHash = {
     "2": ["a", "b", "c"],
     "3": ["d", "e", "f"],
@@ -14,33 +14,22 @@ function letterCombinations(digits: string): string[] {
     "9": ["w", "x", "y", "z"],
   };
   if (digits.length === 1) return hash[digits];
-  const arr = [];
+  const arr: string[][] = [];
   for (const item of digits) {
     arr.push(hash[item]);
   }
-  const strArr: string[] = [];
-  function combine(str: string, arr: string[]) {
-    const n = arr.length;
-    for (let i = 0; i < n; i++) {
-      strArr!.push(str + arr[i]);
+  const res: string[] = [];
+  function dfs(str: string, index: number) {
+    if (index === digits.length) {
+      res.push(str);
+      return;
+    }
+    const curHash = arr[index];
+    for (const curStr of curHash) {
+      dfs(str + curStr, index + 1);
     }
   }
-  // if (digits.length === 2) {
-  //   for (let i = 0; i < 1; i++) {
-  //     const innerN = arr[i].length;
-  //     for (let j = 0; j < innerN; j++) {
-  //       combine(arr[i][j], arr[i + 1]);
-  //     }
-  //   }
-  // }
-  for (let i = 0; i < 1; i++) {
-    const innerN = arr[i].length;
-    for (let j = 0; j < innerN; j++) {
-      combine(arr[i][j], arr[i + 1]);
-    }
-  }
-  console.log(strArr);
-
-  return [""];
+  dfs("", 0);
+  return res;
 }
-letterCombinations("23");
+console.log(letterCombinations(""));
