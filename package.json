@@ -10,10 +10,10 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@types/node": "^18.15.11"
+    "@types/node": "^18.15.11",
+    "ts-node": "^10.9.1"
   },
   "dependencies": {
-    "hy-algokit": "^1.4.0",
-    "ts-node": "^10.9.1"
+    "hy-algokit": "^1.4.0"
   }
 }
