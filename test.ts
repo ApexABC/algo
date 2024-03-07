@@ -1,3 +1,5 @@
+import { measureSort } from 'hy-algokit'
+import { swap, testSort } from './数据结构/utils'
 function debounce(fn: (...args: any) => void, time: number) {
   let timer: any = null
   return function (this: any) {
@@ -84,4 +86,16 @@ function deepClone(obj: IObj) {
   }
   return result
 }
-console.log(deepClone({ a: 1, aa: 3, c: { b: 'z' } }))
+// console.log(deepClone({ a: 1, aa: 3, c: { b: 'z' } }))
+function bubbleSort(arr: number[]): number[] {
+  const n = arr.length
+  for (let i = 0; i < n - 1; i++) {
+    for (let j = 0; j < n - 1 - i; j++) {
+      if (arr[j] > arr[j + 1]) {
+        ;[arr[j + 1], arr[j]] = [arr[j], arr[j + 1]]
+      }
+    }
+  }
+  return arr
+}
+console.log(testSort(bubbleSort))
